@@ -1,11 +1,8 @@
-//import someName from "./some/path/to/your/file.json";
-//import axios from 'axios';
 require('dotenv').config();
 const axios = require('axios').default;
 const { Router } = require('express');
-const { Recipe } = require('../models/Recipe.js');
+const { getFoodById } = require('../controllers/index')
 const router = Router();
-//let receta = require('../../food.json')
 const {
   API_KEY,
 } = process.env;
@@ -25,7 +22,7 @@ router.get('/', async (req, res) => {
 			if(name){
 				console.log('hola')
 				//var index = cadena.indexOf(name);
-				let jsonFiltered = jsonFood.filter(e=>(e.title.indexOf(name))>=0)
+				let jsonFiltered = jsonFood.filter(e=>(e.title.toLowerCase().indexOf(name.toLowerCase()))>=0)
 				jsonFood =jsonFiltered
 			}
 		}
@@ -37,18 +34,22 @@ router.get('/', async (req, res) => {
 })
 
 
-router.get('/:idReceta', async (req, res) => {
+router.get('/:idReceta',  async(req, res) => {
 	try{
-		const {idReceta} = req.params;
-		console.log(idReceta)
-		const url=`https://api.spoonacular.com/recipes/${idReceta}/information?apiKey=${API_KEY}`;
-		const response = await axios.get(url);
-		res.status(201).json(response.data)
-
+		 const {idReceta} = req.params;
+		// console.log(idReceta)
+		// const url=`https://api.spoonacular.com/recipes/${idReceta}/information?apiKey=${API_KEY}`;
+		// const response = await axios.get(url);
+		// res.status(201).json(response.data)
+		//console.log(getFoodById(idReceta))
+		res.status(201).json(await getFoodById(idReceta))
 	} catch (error){
 		console.log("error:",error)	
+		res.status(404).json({error: error.message})
    }
 })
+
+
 
 
  module.exports = router;

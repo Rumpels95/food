@@ -30,11 +30,15 @@ module.exports = (sequelize) => {
       //allowNull: false,
     },
     healthScore:{
-      type: DataTypes.INTEGER,
-      allowNull: false,
+      type: DataTypes.FLOAT,
+      //allowNull: false,
     },
     instructions:{
       type: DataTypes.STRING,
     },
+  },
+  {
+    timestamps: false,
+    
   });
 };
