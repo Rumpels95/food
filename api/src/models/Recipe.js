@@ -20,21 +20,28 @@ module.exports = (sequelize) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
     summary:{
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
-    aggregateLikes:{
+    spoonacularScore:{
       type: DataTypes.INTEGER,
       //allowNull: false,
     },
     healthScore:{
-      type: DataTypes.INTEGER,
-      allowNull: false,
+      type: DataTypes.FLOAT,
+      //allowNull: false,
     },
     instructions:{
       type: DataTypes.STRING,
     },
-  });
+  },
+  {
+    timestamps: false,
+    
+  }); 
 };
+ 
