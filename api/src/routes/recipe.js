@@ -1,9 +1,7 @@
 const { Router } = require('express');
 const { Recipe } = require('../db');
 const router = Router();
-const {
-    API_KEY,
-  } = process.env;
+
 
 router.post('/', async (req,res)=> {
   const {name, summary, aggregateLikes, healthScore, instructions} = req.body
@@ -14,7 +12,7 @@ router.post('/', async (req,res)=> {
   
   try{
     newRecipe = await Recipe.create(req.body)
-    console.log(newRecipe)
+    console.log(newRecipe.id)
     res.status(202).send(req.body)
   }catch (err){
     res.status(404).send('Error en alguno de los datos provistos')
