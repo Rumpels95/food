@@ -1,20 +1,20 @@
 import './App.css';
-import { BrowserRouter, Route } from 'react-router-dom'
-import Boton from './components/Boton'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Recipes from './components/Recipes'
+import LandingPage from './components/LandingPage';
+import Home from './components/Home';
 
 function App() {
   return (
     <BrowserRouter>
     <div className="App">
-      <Route exact path='/'>
-        <h1>Henry Food</h1>
-        <h2>¡Bienvenidos a la pagina de recetas!</h2>
-        <Boton/>
-      </Route>
-      <Route path='/recipes'>
-        <Recipes></Recipes>
-      </Route>
+      <Switch>
+        <Route exact path='/' component={LandingPage}/>
+        <Route path= '/recipes' component={Home}/>
+        <Route path='/recipes'>
+          <Recipes></Recipes>
+        </Route>
+      </Switch>
       
     </div> 
     </BrowserRouter>

@@ -48,7 +48,7 @@ async function getFoodById(idReceta){
 
 //LLAMA A LA API Y A LA DB
 async function getRecipes(name){
-	const number = 2;
+	const number = 10;
 	const url=`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=${number}`;
 	const response = await axios.get(url);
 	let jsonFood = response.data.results;
@@ -70,11 +70,14 @@ async function getRecipes(name){
 			}
 		})
 		jsonFood = valuableInfo;
-		let dbRecipes = await Recipe.findAll()
+		let dbRecipes = await Recipe.findAll() 
 		let jsonDbRecipes = dbRecipes.map(e=>{
 			return{
 				name: e.name,
 				summary: e.summary,
+				spoonacularScore: e.spoonacularScore,
+				healthScore: e.healthScore,
+				instructions: e.instructions
 			}
 			//e.toJSON()
 		})

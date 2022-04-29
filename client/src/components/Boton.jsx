@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { getRecipes } from '../redux/actions/index'
 
 
@@ -9,7 +9,7 @@ function Boton(){
 	//const foods = useSelector(store => store)
 	//console.log(foods)
 
-	return (
+	return ( 
 		<>
 			<Link to='/recipes'>
 				<button onClick={() => dispatch(getRecipes())}>Ver recetas</button>
@@ -17,8 +17,6 @@ function Boton(){
 		</>
 	)
 }
-
-
 
 
 export default Boton
