@@ -38,6 +38,9 @@ module.exports = (sequelize) => {
     instructions:{
       type: DataTypes.STRING,
     },
+    image:{
+      type: DataTypes.STRING,
+    },
   },
   {
     timestamps: false,

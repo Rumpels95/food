@@ -22,11 +22,11 @@ async function getFoodById(idReceta){
 			return {
 				id,
 				name: title,
-				summary,
+				summary: summary.replace(/<[^>]+>/g, ''),
 				spoonacularScore,
 				healthScore,
-				diets,
-				instructions: analyzedInstructions.map(e=>e.steps),
+				diets: diets,
+				instructions: analyzedInstructions.length>0 ? analyzedInstructions.map(e=>e.steps)[0].map(e=>e.step).join(" ") : [],
 				dishTypes,
 				image,
 			}
@@ -36,19 +36,32 @@ async function getFoodById(idReceta){
 		//console.log("ESTOY AQUI")
 		//console.log(idReceta)
 		if(!regexExp.test(idReceta)) throw new Error("Invalid id letra");
-		const recipeFinded = await Recipe.findByPk(idReceta)
-    //console.log(recipeFinded)
+		const recipeFinded = await Recipe.findByPk(idReceta,{
+			include:{
+				model: Diet,
+				attributes: ['name'],
+				through:{ 
+					attributes: [], 
+				},
+			}
+		})
+    console.log(recipeFinded)
 		
 		if (!recipeFinded) {
-			throw new Error("Invalid id letra")
-		}
-		return recipeFinded
+			throw new Error("Invalid id letra")          
+		}  
+		// recipeFinded={
+		// 		...recipeFinded.dataValues,
+		// 		diets: recipeFinded.diets?.map(e=>e.name)       
+		// }
+
+		return recipeFinded  
 	}
 }
 
 //LLAMA A LA API Y A LA DB
-async function getRecipes(name){
-	const number = 10;
+async function getRecipes(name){ 
+	const number = 20;
 	const url=`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=${number}`;
 	const response = await axios.get(url);
 	let jsonFood = response.data.results;
@@ -70,14 +83,25 @@ async function getRecipes(name){
 			}
 		})
 		jsonFood = valuableInfo;
-		let dbRecipes = await Recipe.findAll() 
+		let dbRecipes = await Recipe.findAll({
+			include:{
+				model: Diet,
+				attributes: ['name'],
+				through:{ 
+					attributes: [], 
+				},
+			}
+		}) 
 		let jsonDbRecipes = dbRecipes.map(e=>{
 			return{
+				id: e.id,
 				name: e.name,
 				summary: e.summary,
-				spoonacularScore: e.spoonacularScore,
+				spoonacularScore: e.spoonacularScore, 
 				healthScore: e.healthScore,
-				instructions: e.instructions
+				instructions: e.instructions,
+				image: e.image,
+				dietas: e.diets
 			}
 			//e.toJSON()
 		})
