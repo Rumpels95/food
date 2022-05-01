@@ -1,8 +1,9 @@
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import Recipes from './components/Recipes'
 import LandingPage from './components/LandingPage';
 import Home from './components/Home';
+import CreateFood from './components/CreateFood';
+import Detail from './components/Detail';
 
 function App() {
   return (
@@ -10,10 +11,9 @@ function App() {
     <div className="App">
       <Switch>
         <Route exact path='/' component={LandingPage}/>
-        <Route path= '/recipes' component={Home}/>
-        <Route path='/recipes'>
-          <Recipes></Recipes>
-        </Route>
+        <Route exact path= '/recipes' component={Home}/>
+        <Route path= '/recipe' component={CreateFood}/>
+        <Route path= '/recipes/:id' component={Detail}/>
       </Switch>
       
     </div> 

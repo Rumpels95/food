@@ -1,9 +1,10 @@
 import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import { Link } from 'react-router-dom';
-import { filterFoodByDiets, getRecipes, orderedByName } from '../redux/actions/index'
+import { filterFoodByDiets, getRecipes, orderedByName, orderedByRating } from '../redux/actions/index'
 import Card from './Card';
 import Paginado from './Paginado';
+import SearchBar from './SearchBar';
 
 export default function Home (){
 	const dispatch = useDispatch()
@@ -37,10 +38,13 @@ export default function Home (){
 		e.preventDefault();
 		dispatch(orderedByName(e.target.value))
 		setActualPage(1);
-		setOrder(`Ordenado ${e.target.value}`)
-
+		setOrder(`Ordenado ${e.target.value}`)//renderiza
 	}
 	function handleSortPunct(e){
+		e.preventDefault();
+		dispatch(orderedByRating(e.target.value))
+		setActualPage(1);
+		setOrder(`Ordenado de manera ${e.target.value}`)
 	}
 	return (
 		<div>
@@ -87,13 +91,14 @@ export default function Home (){
 					paginado={paginado}
 				/>
 
+				<SearchBar/>
 				
 				{
 					actualFoods?.map(e=>{
 						return(
 							<div>
 								<Link to={"/recipes/"+e.id}>
-									<Card name={e.name} image={e.image} diets={e.diets}/>
+									<Card name={e.name} image={e.image} diets={e.diets?e.diets:e.dietas.map(e=>e.name)} id={e.id}/>
 								</Link>
 							</div>	
 						)

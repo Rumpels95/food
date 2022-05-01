@@ -11,6 +11,7 @@ router.get('/', async (req, res) => {
 	
 		//codigo de agregado de nombre de dieta
 		try{
+			res.header("Access-Control-Allow-Origin", "*");
 			const newDiet = await Diet.findAll()
 			res.status(201).json(newDiet)
 		}catch(error){

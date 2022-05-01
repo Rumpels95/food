@@ -9,7 +9,7 @@ module.exports = {
 	callDiets: async function (){
 		//const bulk = async()=>{
 		const arrayDiet = [{name:'Gluten Free'}, {name:'Ketogenic'}, {name:'Vegetarian'}, {name:'Lacto-Vegetarian'}, {name:'Ovo-Vegetarian'},
-		{name:'Vegan'}, {name:'Pescetarian'}, {name:'Paleo'}, {name:'Primal'}, {name:'Low FODMAP'}, {name:'Whole30'}, {name:'airyFree'}];
+		{name:'Vegan'}, {name:'Pescetarian'}, {name:'Paleo'}, {name:'Primal'}, {name:'Low FODMAP'}, {name:'Whole30'}, {name:'DairyFree'}];
 
 		await Diet.bulkCreate(arrayDiet)
 		//console.log(character) 

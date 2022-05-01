@@ -22,7 +22,8 @@ router.get('/', async (req, res) => {
 //getId
 router.get('/:idReceta',  async(req, res) => {
 	try{
-		 const {idReceta} = req.params;
+		res.header("Access-Control-Allow-Origin", "*");
+		const {idReceta} = req.params;
 		res.status(201).json(await getFoodById(idReceta))
 	} catch (error){
 		res.status(404).json({error: error.message})
