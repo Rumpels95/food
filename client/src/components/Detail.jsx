@@ -1,17 +1,22 @@
 import React, {useState, useEffect} from "react";
 import { Link } from 'react-router-dom';
-import { getDetail } from '../redux/actions'
+import { clearPage, getDetail } from '../redux/actions'
 import { useDispatch, useSelector } from "react-redux";
+import NavBar from "./NavBar";
 
 export default function Detail(props){
 	console.log(props)
 	const dispatch = useDispatch()
 	useEffect(()=>{
 		dispatch(getDetail(props.match.params.id))
+		return()=>{
+			dispatch(clearPage())
+		}
 	},[dispatch])
 	const myFood = useSelector((state)=> state.foodDetail)
 	return(
 		<div>
+			<NavBar/>
 			{
 				Object.keys(myFood).length!==0 ?
 				<div key={myFood.id}>

@@ -15,8 +15,8 @@ router.post('/', async (req,res)=> {
     newRecipe = await Recipe.create({
       name,
       summary,
-      spoonacularScore,
-      healthScore,
+      spoonacularScore: spoonacularScore?spoonacularScore:0,
+      healthScore: healthScore?healthScore:0.0,
       instructions,
       image
     })

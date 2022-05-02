@@ -1,4 +1,4 @@
-import { GET_RECIPES, FILTER_BY_DIETS, ORDER_BY_NAME, ORDER_BY_RATING, GET_NAME_RECIPES, POST_FOOD, GET_DIETS, GET_DETAILS } from "../actions";
+import { GET_RECIPES, FILTER_BY_DIETS, ORDER_BY_NAME, ORDER_BY_RATING, GET_NAME_RECIPES, POST_FOOD, GET_DIETS, GET_DETAILS, CLEAR_PAGE } from "../actions";
 
 const initialState = {
   foods: [],
@@ -79,6 +79,11 @@ export default function reducer( state = initialState, action) {
 				return{
 					...state,
 					foodDetail: action.payload
+				}
+			case CLEAR_PAGE:
+				return{
+					...state,
+					foodDetail: {}
 				}
 
 		default:

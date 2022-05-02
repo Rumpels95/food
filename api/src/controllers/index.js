@@ -45,17 +45,31 @@ async function getFoodById(idReceta){
 				},
 			}
 		})
-    console.log(recipeFinded)
+    	console.log(recipeFinded)
 		
 		if (!recipeFinded) {
 			throw new Error("Invalid id letra")          
 		}  
+
+		let jsonDbRecipes = {
+			id: recipeFinded.id,
+			name: recipeFinded.name,
+			summary: recipeFinded.summary,
+			spoonacularScore: recipeFinded.spoonacularScore, 
+			healthScore: recipeFinded.healthScore,
+			instructions: recipeFinded.instructions,
+			image: recipeFinded.image,
+			diets: recipeFinded.diets.map(e=>e.name)
+		}
+		
+		// 	//e.toJSON()
+		// })
 		// recipeFinded={
 		// 		...recipeFinded.dataValues,
 		// 		diets: recipeFinded.diets?.map(e=>e.name)       
 		// }
 
-		return recipeFinded  
+		return jsonDbRecipes  
 	}
 }
 

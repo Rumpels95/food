@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 			const newDiet = await Diet.findAll()
 			res.status(201).json(newDiet)
 		}catch(error){
-			res.status(404).send('Error en alguno de los datos provistos')
+			res.status(404).send('Error en alguno de los datos provistos') 
 		}
 	
 })
