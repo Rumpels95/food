@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import {Link, useHistory} from 'react-router-dom';
 import { postFood, getDiets } from '../redux/actions'
 import { useDispatch, useSelector } from "react-redux";
+import NavBar from "./NavBar";
 
 function isValid(input){
 	const errors ={}
@@ -44,10 +45,12 @@ export default function CreateFood(){
 
 	function handleCheck(e){
 		if(e.target.checked){
-			stateInput({
-				...input,
-				diet: [...input.diet, e.target.value]
-			})
+			if(!input.diet.includes(e.target.value)){
+				stateInput({
+					...input,
+					diet: [...input.diet, e.target.value]
+				})
+			}
 		}
 	}
 
@@ -76,7 +79,8 @@ export default function CreateFood(){
 
 	return(
 		<>
-			<Link to= '/recipes'><button>Regresar</button></Link>
+			<NavBar/>
+			
 			<h1>Crea tu Receta</h1>
 			<form onSubmit={e=>handleSubmit(e)}>
 				<div>

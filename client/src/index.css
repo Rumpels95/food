@@ -1,3 +1,9 @@
+
+:root{
+  --main-container-bg-color: #f9fafa;
+  --bg-landing-color: #e5e5e5;
+}
+
 body {
   background: url('https://images4.alphacoders.com/100/10054.jpg');
   margin: 0;

@@ -3,6 +3,8 @@ import {useDispatch, useSelector} from 'react-redux'
 import { Link } from 'react-router-dom';
 import { filterFoodByDiets, getRecipes, orderedByName, orderedByRating } from '../redux/actions/index'
 import Card from './Card';
+import Cards from './Cards';
+import NavBar from './NavBar';
 import Paginado from './Paginado';
 import SearchBar from './SearchBar';
 
@@ -48,7 +50,8 @@ export default function Home (){
 	}
 	return (
 		<div>
-			<Link to='/recipe'>Crear receta</Link>
+			<NavBar/>
+			
 			<h1>TODAS LAS RECETAS</h1>
 			<button onClick={e=> {handleClick(e)}}>
 				Mostrar recetas
@@ -90,21 +93,10 @@ export default function Home (){
 					allFoods= {allRecipes.length}
 					paginado={paginado}
 				/>
-
 				<SearchBar/>
+				<Cards foods={actualFoods}/>
 				
-				{
-					actualFoods?.map(e=>{
-						return(
-							<div>
-								<Link to={"/recipes/"+e.id}>
-									<Card name={e.name} image={e.image} diets={e.diets?e.diets:e.dietas.map(e=>e.name)} id={e.id}/>
-								</Link>
-							</div>	
-						)
-					}
-					)
-				}
+				
 			</div>
 		</div>
 	)

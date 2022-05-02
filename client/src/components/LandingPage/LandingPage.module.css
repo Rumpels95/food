@@ -1,0 +1,13 @@
+
+.div0{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    background: url(https://watermark.lovepik.com/photo/20211209/large/lovepik-healthy-eating-vegetable-food-material-background-picture_501697054.jpg);
+    background-size: cover;
+    flex-direction: column;
+    align-content: center;
+}
+.h1{
+    color: blueviolet;
+}

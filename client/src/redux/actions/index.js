@@ -7,6 +7,7 @@ export const GET_NAME_RECIPES = 'GET_NAME_RECIPES'
 export const GET_DIETS = 'GET_DIETS'
 export const POST_FOOD = 'POST_FOOD'
 export const GET_DETAILS = 'GET_DETAILS'
+export const CLEAR_PAGE = 'CLEAR_PAGE'
 
 
 export function getRecipes(){
@@ -62,5 +63,11 @@ export function getDetail(id){
 	return async function(dispatch){
 		return axios.get(`http://localhost:3001/recipes/${id}`)
 		.then(( json ) => dispatch({type: GET_DETAILS, payload: json.data}))
+	}
+}
+
+export function clearPage(){
+	return{
+		type: CLEAR_PAGE
 	}
 }
