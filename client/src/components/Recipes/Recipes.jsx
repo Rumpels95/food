@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
-import { getRecipes } from "../redux/actions"
+import { getRecipes } from "../../redux/actions"
 
 export default function Recipes() {
 

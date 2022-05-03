@@ -1,12 +1,12 @@
 import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import { Link } from 'react-router-dom';
-import { filterFoodByDiets, getRecipes, orderedByName, orderedByRating } from '../redux/actions/index'
-import Card from './Card';
-import Cards from './Cards';
-import NavBar from './NavBar';
-import Paginado from './Paginado';
-import SearchBar from './SearchBar';
+import { filterFoodByDiets, getRecipes, orderedByName, orderedByRating } from '../../redux/actions/index'
+import Card from '../Card/Card';
+import Cards from '../Cards/Cards';
+import NavBar from '../NavBar/NavBar';
+import Paginado from '../Paginado/Paginado';
+import SearchBar from '../SearchBar/SearchBar';
 
 export default function Home (){
 	const dispatch = useDispatch()
@@ -53,22 +53,23 @@ export default function Home (){
 			<NavBar/>
 			
 			<h1>TODAS LAS RECETAS</h1>
-			<button onClick={e=> {handleClick(e)}}>
+			{/* <button onClick={e=> {handleClick(e)}}>
 				Mostrar recetas
-			</button>
+			</button> */}
 			<div>
-				<div>Nombre</div>
-				<select onClick={e=> {handleSortName(e)}}>
+				<div>Ordenar por Nombre</div>
+				<select onChange={e=> handleSortName(e)}>
 					<option value='asc'>Ascendente</option>
 					<option value='desc'>Descendente</option>
 				</select>
-				<div>Puntuación</div>
-				<select onClick={e=> {handleSortPunct(e)}}>
+				<div>Ordenar por Puntuación</div>
+				<select onChange={e=> handleSortPunct(e)}>
 					<option value='asc'>Ascendente</option>
 					<option value='desc'>Descendente</option>
 				</select>
+				<div>Filtrar por tipo de receta:</div>
 				<div>
-				<select onClick={e=> {handleFilterDiet(e)}}>
+				<select onChange={e=> handleFilterDiet(e)}>
 					<option value='All'>Todos</option>
 					<option value='dairy free'>Dairy Free</option>
 					<option value='gluten free'>Gluten Free</option>
@@ -78,16 +79,16 @@ export default function Home (){
 					<option value='lacto ovo vegetarian'>Ovo-Vegetarian</option>
 					<option value='vegan'>Vegan</option>
 					<option value='pescetarian'>Pescetarian</option>
-					<option value='paleo'>Paleo</option>
+					<option value='paleolithic'>Paleo</option>
 					<option value='primal'>Primal</option>
-					<option value='low FODMAP'>Low FODMAP</option>
-					<option value='Whole30'>Whole30</option>
+					<option value='fodmap friendly'>Low FODMAP</option>
+					<option value='whole 30'>Whole30</option>
 				</select>
 				</div>
-				<select>
+				{/* <select>
 					<option value='spoonScore'>Puntuacion</option>
 					<option value='withoutScore'>Sin Puntuacion</option>
-				</select>
+				</select> */}
 				<Paginado
 					foodsPerPage= {foodsPerPage}
 					allFoods= {allRecipes.length}

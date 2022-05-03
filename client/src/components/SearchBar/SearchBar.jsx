@@ -1,7 +1,7 @@
 import React from "react";
 import {useState} from 'react';
 import { useDispatch } from "react-redux";
-import { getNameFood } from "../redux/actions";
+import { getNameFood } from "../../redux/actions/index";
 
 export default function SearchBar(){
 	const dispatch = useDispatch()
