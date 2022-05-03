@@ -8,8 +8,8 @@ module.exports = {
 	// before(()=> models.User.bulkCreate(users));
 	callDiets: async function (){
 		//const bulk = async()=>{
-		const arrayDiet = [{name:'Gluten Free'}, {name:'Ketogenic'}, {name:'Vegetarian'}, {name:'Lacto-Vegetarian'}, {name:'Ovo-Vegetarian'},
-		{name:'Vegan'}, {name:'Pescetarian'}, {name:'Paleo'}, {name:'Primal'}, {name:'Low FODMAP'}, {name:'Whole30'}, {name:'DairyFree'}];
+		const arrayDiet = [{name:'gluten free'}, {name:'ketogenic'}, {name:'vegetarian'}, {name:'lacto vegetarian'}, {name:'ovo Vegetarian'},
+		{name:'vegan'}, {name:'pescetarian'}, {name:'paleolithic'}, {name:'primal'}, {name:'fodmap friendly'}, {name:'whole 30'}, {name:'dairy free'}];
 
 		await Diet.bulkCreate(arrayDiet)
 		//console.log(character) 

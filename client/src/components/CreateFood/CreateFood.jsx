@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from "react";
 import {Link, useHistory} from 'react-router-dom';
-import { postFood, getDiets } from '../redux/actions'
+import { postFood, getDiets } from '../../redux/actions'
 import { useDispatch, useSelector } from "react-redux";
-import NavBar from "./NavBar";
+import NavBar from "../NavBar/NavBar";
+import style from './CreateFood.module.css'
 
 function isValid(input){
 	const errors ={}
@@ -11,7 +12,7 @@ function isValid(input){
 	if(!input.spoonacularScore) errors.spoonacularScore = 'Se requiere un spoonacularScore'
 	if(!input.healthScore) errors.healthScore = 'Se requiere un healthScore'
 	if(!input.instructions) errors.instructions = 'Se requieren instrucciones'
-	if(!input.diets) errors.diets = 'Se requieren instrucciones'
+	if(!input.diet.length) errors.diet = 'Al menos una dieta debe seleccionarse'
 
 	return errors;
 }
@@ -20,7 +21,11 @@ export default function CreateFood(){
 	const dispatch = useDispatch()
 	const history = useHistory()
 	const diets = useSelector((state) => state.diets)
-	const [errors, setErrors] = useState({})
+	const [errors, setErrors] = useState({
+		name: 'Se requiere un nombre',
+		summary: 'Se requiere un resumen',
+		diet: 'Al menos una dieta debe seleccionarse'
+	})
 	const [input, stateInput] = useState({
 		name: "",
 		summary: "",
@@ -50,6 +55,10 @@ export default function CreateFood(){
 					...input,
 					diet: [...input.diet, e.target.value]
 				})
+				setErrors(isValid({
+					...input,
+					diet: [...input.diet, e.target.value]
+				}))
 			}
 		}
 	}
@@ -57,6 +66,10 @@ export default function CreateFood(){
 	function handleSubmit(e){
 		e.preventDefault()
 		console.log(input)
+		if(!input.name || !input.summary || !input.diet.length){
+			alert("Completar los campos requeridos")
+		}
+		else{
 		dispatch(postFood(input))
 		alert("Personaje creado satisfactoriamente")
 		stateInput({
@@ -68,6 +81,7 @@ export default function CreateFood(){
 			image: "",
 			diet: []
 		})
+		}
 		//history.push('/recipes')
 	}
 
@@ -87,22 +101,22 @@ export default function CreateFood(){
 					<label>Nombre:</label>
 					<input type="text" value={input.name} name="name" onChange={handleChange}/>
 					{errors.name && (
-						<p className='error'>{errors.name}</p>
+						<span className={style.error}>{errors.name}</span>
 					)}
 				</div>
 				<div>
 					<label>Resumen:</label>
 					<input type="text" value={input.summary} name="summary" onChange={handleChange}/>
 					{errors.summary && (
-						<p className='error'>{errors.summary}</p>
+						<span className={style.error}>{errors.summary}</span>
 					)}
 				</div>
 				<div>
 					<label>Spoonacular Score:</label>
 					<input type="text" value={input.spoonacularScore} name="spoonacularScore" onChange={handleChange}/>
-					{errors.spoonacularScore && (
-						<p className='error'>{errors.spoonacularScore}</p>
-					)}
+					{/* {errors.spoonacularScore && (
+						<span className={style.error}>{errors.spoonacularScore}</span>
+					)} */}
 				</div>
 				<div>
 					<label>Health Score:</label>
@@ -116,12 +130,16 @@ export default function CreateFood(){
 					<label>Imagen:</label>
 					<input type="text" value={input.image} name="image" onChange={handleChange}/>
 				</div>
+				<div>
 				{
 					diets?.map((dieta)=>
 					 	(
-							<label>{dieta.name}:<input type="checkbox" value={dieta.name} name={dieta.name} onChange={(e)=>handleCheck(e)}/></label>
+							<label>{dieta.name.charAt(0).toUpperCase()+dieta.name.slice(1)}:<input type="checkbox" value={dieta.name} name={dieta.name} onChange={(e)=>handleCheck(e)}/></label>
 					 	))
-				}
+				}{errors.diet && (
+					<span className={style.error}>{errors.diet}</span>
+				)}
+				</div>
 				<ul><li>{input.diet.map(e=>e+",")}</li></ul>
 				<button type='submit'>Crear Receta</button>
 			</form>

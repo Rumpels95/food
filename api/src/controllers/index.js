@@ -45,7 +45,7 @@ async function getFoodById(idReceta){
 				},
 			}
 		})
-    	console.log(recipeFinded)
+    	
 		
 		if (!recipeFinded) {
 			throw new Error("Invalid id letra")          
@@ -75,7 +75,7 @@ async function getFoodById(idReceta){
 
 //LLAMA A LA API Y A LA DB
 async function getRecipes(name){ 
-	const number = 20;
+	const number = 50;
 	const url=`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=${number}`;
 	const response = await axios.get(url);
 	let jsonFood = response.data.results;
@@ -135,7 +135,46 @@ async function getRecipes(name){
 	
 }
 
+async function postFood(body){
+	const {name, summary, spoonacularScore, healthScore, instructions, diet, image} = body
+		if(!name || !summary){
+		 throw new Error('Completar los campos obligatorios')
+	  }
+	  if(!diet.length>0) throw new Error('Debe ingresar dietas')
+
+		////////////////
+		let foodDbName = await Recipe.findAll({ 
+      where: { name: name } 
+    })
+		if(foodDbName.length) throw new Error('El nombre ya existe, ingresar otro')
+/////////////////
+///////////////
+		let foodDbSummary = await Recipe.findAll({
+			where: { summary: summary } 
+		})
+		if(foodDbSummary.length) throw new Error('El resumen ya existe, ingresar otro')
+/////////////////
+	  const newRecipe = await Recipe.create({
+		name,
+		summary,
+		spoonacularScore: spoonacularScore?spoonacularScore:0,
+		healthScore: healthScore?healthScore:0.0,
+		instructions,
+		image
+	  })
+
+		let dietDb = await Diet.findAll({
+      where: { name: diet }
+    })
+    newRecipe.addDiet(dietDb)
+    //console.log(newRecipe)
+    let jsonDbRecipes = await getFoodById(newRecipe.id)
+    console.log(jsonDbRecipes.diets)
+		return jsonDbRecipes 
+}
+
 module.exports = {
 	getFoodById,
-	getRecipes
+	getRecipes,
+	postFood
 }

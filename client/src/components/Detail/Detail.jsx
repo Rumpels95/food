@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
 import { Link } from 'react-router-dom';
-import { clearPage, getDetail } from '../redux/actions'
+import { clearPage, getDetail } from '../../redux/actions'
 import { useDispatch, useSelector } from "react-redux";
-import NavBar from "./NavBar";
+import NavBar from '../NavBar/NavBar';
 
 export default function Detail(props){
 	console.log(props)

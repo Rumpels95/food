@@ -17,9 +17,9 @@ export default function reducer( state = initialState, action) {
 			}
 		case FILTER_BY_DIETS:
 			const allFoods = state.initialFoods
-			const statusFiltered = action.payload === 'All' ? allFoods : allFoods.filter(e => 
-					e.diets.includes(action.payload)
-			)
+			const statusFiltered = ( action.payload === 'All') ? allFoods : allFoods.filter(e => 
+					e.diets ? e.diets.includes(action.payload) : e.dietas.map(e=>e.name).includes(action.payload))
+			
 			return {
 				...state,
 				foods: statusFiltered
@@ -29,14 +29,14 @@ export default function reducer( state = initialState, action) {
 			const typeOrder = action.payload === 'asc' ?
 				state.foods.sort(function(a, b) {
 					//return a.name - b.name
-					if(a.name > b.name) return 1
-					if(b.name > a.name) return -1
+					if(a.name.toLowerCase() > b.name.toLowerCase()) return 1
+					if(b.name.toLowerCase() > a.name.toLowerCase()) return -1
 					return 0
 				})
 				: state.foods.sort(function(a, b) {
 					//return b.name - a.name
-					if(b.name > a.name) return 1
-					if(a.name > b.name) return -1
+					if(b.name.toLowerCase() > a.name.toLowerCase()) return 1
+					if(a.name.toLowerCase() > b.name.toLowerCase()) return -1
 					return 0
 				})
 			console.log(typeOrder)
