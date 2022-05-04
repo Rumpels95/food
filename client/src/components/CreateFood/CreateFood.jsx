@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {Link, useHistory} from 'react-router-dom';
+//import { useHistory} from 'react-router-dom';
 import { postFood, getDiets } from '../../redux/actions'
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../NavBar/NavBar";
@@ -19,8 +19,9 @@ function isValid(input){
 
 export default function CreateFood(){
 	const dispatch = useDispatch()
-	const history = useHistory()
+	//const history = useHistory()
 	const diets = useSelector((state) => state.diets)
+	const messageBack =  useSelector((state) => state.message)
 	const [errors, setErrors] = useState({
 		name: 'Se requiere un nombre',
 		summary: 'Se requiere un resumen',
@@ -71,7 +72,7 @@ export default function CreateFood(){
 		}
 		else{
 		dispatch(postFood(input))
-		alert("Personaje creado satisfactoriamente")
+		// alert( "Comida creada satisfactoriamente ")
 		stateInput({
 			name: "",
 			summary: "",
@@ -89,8 +90,17 @@ export default function CreateFood(){
 
 	useEffect(()=>{
 		dispatch(getDiets())
+		// alert( messageBack.message)
+		// eslint-disable-next-line
 	}, [])
 
+
+	if(!messageBack){
+		console.log(messageBack)
+		
+		alert("Completar los campos requeridos")
+		return 
+	}
 	return(
 		<>
 			<NavBar/>
@@ -134,7 +144,7 @@ export default function CreateFood(){
 				{
 					diets?.map((dieta)=>
 					 	(
-							<label>{dieta.name.charAt(0).toUpperCase()+dieta.name.slice(1)}:<input type="checkbox" value={dieta.name} name={dieta.name} onChange={(e)=>handleCheck(e)}/></label>
+							<label key={dieta.name}>{dieta.name.charAt(0).toUpperCase()+dieta.name.slice(1)}:<input type="checkbox" value={dieta.name} name={dieta.name} onChange={(e)=>handleCheck(e)}/></label>
 					 	))
 				}{errors.diet && (
 					<span className={style.error}>{errors.diet}</span>

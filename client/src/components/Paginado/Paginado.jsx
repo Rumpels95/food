@@ -11,8 +11,8 @@ export default function Paginado({ foodsPerPage, allFoods, paginado }) {
 		<nav>
 			<div className={style.paginado}>
 				{ pageNumbers?.map(e =>(
-					<span className={style.number} key={e}>
-						<a onClick={()=> paginado(e)}>{e}</a>
+					<span className={style.number} key={e} onClick={()=> paginado(e)}>{e}
+						{/* <a onClick={()=> paginado(e)}>{e}</a> */}
 					</span>
 				))}
 			</div>

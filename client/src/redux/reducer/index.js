@@ -1,10 +1,12 @@
-import { GET_RECIPES, FILTER_BY_DIETS, ORDER_BY_NAME, ORDER_BY_RATING, GET_NAME_RECIPES, POST_FOOD, GET_DIETS, GET_DETAILS, CLEAR_PAGE } from "../actions";
+import { GET_RECIPES, FILTER_BY_DIETS, ORDER_BY_NAME, ORDER_BY_RATING, GET_NAME_RECIPES, POST_FOOD, GET_DIETS, GET_DETAILS, CLEAR_PAGE, HANDLE_ERROR } from "../actions";
 
 const initialState = {
   foods: [],
 	initialFoods: [],
+	staticFoods: [],
 	diets: [],
   foodDetail: {},
+  message:{}
 }
 
 export default function reducer( state = initialState, action) {
@@ -13,7 +15,8 @@ export default function reducer( state = initialState, action) {
 			return {
 				...state, 
 				foods: action.payload,
-				initialFoods: action.payload
+				initialFoods: action.payload,
+				staticFoods: action.payload
 			}
 		case FILTER_BY_DIETS:
 			const allFoods = state.initialFoods
@@ -26,17 +29,19 @@ export default function reducer( state = initialState, action) {
 			}
 		case ORDER_BY_NAME:
 			console.log(action.payload)
-			const typeOrder = action.payload === 'asc' ?
-				state.foods.sort(function(a, b) {
+			const allFoods1 = state.initialFoods
+			const typeOrder = ( action.payload === 'All' ) ? allFoods1 :
+				action.payload === 'asc' ?
+				allFoods1.sort(function(a, b) {
 					//return a.name - b.name
-					if(a.name.toLowerCase() > b.name.toLowerCase()) return 1
-					if(b.name.toLowerCase() > a.name.toLowerCase()) return -1
+					if(a.name.toLowerCase().replace(/\s+/g, ' ').trim() > b.name.toLowerCase().replace(/\s+/g, ' ').trim()) return 1
+					if(b.name.toLowerCase().replace(/\s+/g, ' ').trim() > a.name.toLowerCase().replace(/\s+/g, ' ').trim()) return -1
 					return 0
 				})
-				: state.foods.sort(function(a, b) {
+				: allFoods1.sort(function(a, b) {
 					//return b.name - a.name
-					if(b.name.toLowerCase() > a.name.toLowerCase()) return 1
-					if(a.name.toLowerCase() > b.name.toLowerCase()) return -1
+					if(b.name.toLowerCase().replace(/\s+/g, ' ').trim() > a.name.toLowerCase().replace(/\s+/g, ' ').trim()) return 1
+					if(a.name.toLowerCase().replace(/\s+/g, ' ').trim() > b.name.toLowerCase().replace(/\s+/g, ' ').trim()) return -1
 					return 0
 				})
 			console.log(typeOrder)
@@ -68,7 +73,8 @@ export default function reducer( state = initialState, action) {
 				}
 			case POST_FOOD:
 				return{
-					...state
+					...state,
+					message: action.payload,
 				}
 			case GET_DIETS:
 				return{
@@ -84,6 +90,11 @@ export default function reducer( state = initialState, action) {
 				return{
 					...state,
 					foodDetail: {}
+				}
+			case HANDLE_ERROR:
+				return{
+					...state,
+					message: action.payload
 				}
 
 		default:

@@ -1,8 +1,6 @@
 import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux'
-import { Link } from 'react-router-dom';
 import { filterFoodByDiets, getRecipes, orderedByName, orderedByRating } from '../../redux/actions/index'
-import Card from '../Card/Card';
 import Cards from '../Cards/Cards';
 import NavBar from '../NavBar/NavBar';
 import Paginado from '../Paginado/Paginado';
@@ -11,10 +9,13 @@ import SearchBar from '../SearchBar/SearchBar';
 export default function Home (){
 	const dispatch = useDispatch()
 	const allRecipes = useSelector((state) => state.foods)
-	const [order, setOrder] = useState('')
+	// order
+	const [, setOrder] = useState('')
 	// Paginacion
+
 	const [actualPage, setActualPage] = useState(1)
-	const [foodsPerPage, setFoodsPerPage] = useState(9)
+	//setFoodsPerPage
+	const [foodsPerPage, ] = useState(9)
 	const indexOfLastFood = actualPage * foodsPerPage
 	const indexOfFirstFood = indexOfLastFood - foodsPerPage
 	const actualFoods = allRecipes.slice(indexOfFirstFood, indexOfLastFood)
@@ -24,16 +25,19 @@ export default function Home (){
 	}
 	useEffect (()=>{
 		dispatch(getRecipes())
+		// eslint-disable-next-line
 	}, [])
 
-	function handleClick(e){
-		e.preventDefault();
-		dispatch(getRecipes());	 
-	}
+	// function handleClick(e){
+	// 	e.preventDefault();
+	// 	dispatch(getRecipes());	 
+	// }
 
 	function handleFilterDiet(e){
 		e.preventDefault();
 		dispatch(filterFoodByDiets(e.target.value))
+		setActualPage(1);
+		setOrder(`Ordenado ${e.target.value}`)//renderiza
 	}
 
 	function handleSortName(e){
@@ -59,11 +63,13 @@ export default function Home (){
 			<div>
 				<div>Ordenar por Nombre</div>
 				<select onChange={e=> handleSortName(e)}>
+					<option value='All'>Ninguno</option>
 					<option value='asc'>Ascendente</option>
 					<option value='desc'>Descendente</option>
 				</select>
 				<div>Ordenar por Puntuación</div>
 				<select onChange={e=> handleSortPunct(e)}>
+					<option value='All'>Ninguno</option>
 					<option value='asc'>Ascendente</option>
 					<option value='desc'>Descendente</option>
 				</select>
@@ -95,7 +101,8 @@ export default function Home (){
 					paginado={paginado}
 				/>
 				<SearchBar/>
-				<Cards foods={actualFoods}/>
+				{actualFoods.length===0? (<p>Cargando...</p>):(<Cards foods={actualFoods}/>)}
+				
 				
 				
 			</div>
