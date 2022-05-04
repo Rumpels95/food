@@ -8,6 +8,7 @@ export const GET_DIETS = 'GET_DIETS'
 export const POST_FOOD = 'POST_FOOD'
 export const GET_DETAILS = 'GET_DETAILS'
 export const CLEAR_PAGE = 'CLEAR_PAGE'
+export const HANDLE_ERROR = 'HANDLE_ERROR'
 
 
 export function getRecipes(){
@@ -55,7 +56,12 @@ export function getDiets(){
 export function postFood(payload){
 	return function(dispatch){
 		return axios.post(`http://localhost:3001/recipe`, payload)
-		.then(( json ) => dispatch({type: POST_FOOD, payload: json.data}))
+		// .then(( json ) => dispatch({type: POST_FOOD, payload: json.data}))
+		// .catch(error=> window.alert(error.response.data.message))
+		.then(()=> window.alert('Receta creada orgullosamente'))
+		.catch((error)=> window.alert(error.response.data))
+		//.catch(( error ) => dispatch({type: HANDLE_ERROR, payload: error.response.data}))
+		
 	}
 }
 
@@ -71,3 +77,4 @@ export function clearPage(){
 		type: CLEAR_PAGE
 	}
 }
+

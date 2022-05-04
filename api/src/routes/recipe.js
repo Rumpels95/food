@@ -33,7 +33,7 @@ router.post('/', async (req,res)=> {
     // //jsonDbRecipes.diets()
     /** */
     // if(jsonDbRecipes.diets.includes())
-    res.status(202).json(await postFood(req.body)) 
+    res.status(202).json({message: await postFood(req.body)})  
   }catch (err){
     res.status(404).json(err.message)
   }

@@ -1,13 +1,69 @@
 
 .div0{
-    display: flex;
     width: 100vw;
     height: 100vh;
-    background: url(https://watermark.lovepik.com/photo/20211209/large/lovepik-healthy-eating-vegetable-food-material-background-picture_501697054.jpg);
+    background: url(https://watermark.lovepik.com/photo/20211209/large/lovepik-healthy-eating-vegetable-food-material-background-picture_501697054.jpg) no-repeat 50% fixed;
     background-size: cover;
+    display: grid;
     flex-direction: column;
     align-content: center;
+    align-items: center;
+    /* vertical-align: center; */
+    place-content: center;
+    position: relative;
+    cursor: default;
 }
 .h1{
-    color: blueviolet;
+    color: black;
+}
+.h2{
+    color: black;
+    
+}
+
+.button{
+    cursor: pointer;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    background-color: #000;
+    display: inline-block;
+    padding: 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    text-align: center;
+}
+
+.div1{
+    display: flex;
+    background-color: orange;
+    flex-direction: column;
+    align-items: center;
+    
+    text-decoration: none;
+    width: 18rem;
+    height: 11rem;
+    border: 0.2rem solid #000;
+    max-width: 20rem;
+    overflow: hidden;
+    box-shadow: 0 0 transparent, 0 0 transparent, 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -2px rgb(0 0 0 / 10%);
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+
+    text-decoration: none;
+    color: #fff;
+    font-weight: 400;
+    font-size: 1rem;
+    display: inline-block;
+    padding: 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    text-align: center;
+    cursor: default;
+}
+
+.link{
+    text-decoration: none; 
 }
