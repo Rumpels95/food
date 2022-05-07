@@ -20,6 +20,8 @@
     text-align: -webkit-match-parent;
     white-space: nowrap;
     font-weight: 400;
+    margin-left: 2em;
+    margin-right: 2em;
 }
 
 .ul{

@@ -1,14 +1,41 @@
 .cards{
-    display: flex;
+    display: block;
     background-color: #ece5da;
     flex-direction: column;
     align-items: center;
-    text-decoration: none;
-    width: 20rem;
-    height: 20rem;
-    border: 0.1rem solid #000;
-    max-width: 20rem;
+    width: 22rem;
+    height: 26rem;
+    border: 0.2rem solid #000;
+    max-width: 25rem;
     border-radius: 1.5rem;
     overflow: hidden;
     box-shadow: 0 0 transparent, 0 0 transparent, 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -2px rgb(0 0 0 / 10%);
+    padding: 0.5rem 0rem 0rem 0rem;
+    text-align: center;
+}
+.cards:hover{
+    transition: .6s;
+    border: 3px solid white;
+    background-color: orange;
+    color: black;
+}
+
+.img{
+    display: block;
+    background-color: #ece5da;
+    flex-direction: column;
+    align-items: center;
+    width: 15rem;
+    height: 10rem;
+    border: 1rem solid #000;
+    margin: 1rem 1rem 1rem 2rem;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+}
+
+.dietas{
+    display: block;
+    flex-direction: column;
+    text-decoration: none;
+    padding: 0rem 1rem 0rem 0rem;
+    align-items: center;
 }

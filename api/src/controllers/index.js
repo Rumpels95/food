@@ -1,7 +1,7 @@
 'use strict'
 require('dotenv').config();
 const { Diet, Recipe } = require('../db');
-const axios = require('axios').default;
+const axios = require('axios').default; 
 
 const {
   API_KEY,
@@ -75,7 +75,8 @@ async function getFoodById(idReceta){
 
 //LLAMA A LA API Y A LA DB
 async function getRecipes(name){ 
-	const number = 30;
+	let cache={};
+	const number = 100;
 	const url=`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=${number}`;
 	const response = await axios.get(url);
 	let jsonFood = response.data.results;
@@ -132,6 +133,7 @@ async function getRecipes(name){
 			name= name.replace(/\s+/g, ' ').trim()
 			console.log(name)
 			 jsonFiltered = allRecipes.filter(e=>(e.name.toLowerCase().indexOf(name.toLowerCase()))!==-1)
+			 if(!jsonFiltered.length) throw new Error(`No encontramos la receta con nombre ${name}, ingresar otro`);
 			 console.log(jsonFiltered.length)
 			 return jsonFiltered
 		}
@@ -149,8 +151,8 @@ async function postFood(body){
 
 		////////////////
 		let foodDbName = await Recipe.findAll({ 
-      where: { name: name } 
-    })
+			where: { name: name } 
+		})
 		if(foodDbName.length) throw new Error('El nombre ya existe, ingresar otro')
 /////////////////
 ///////////////
@@ -169,8 +171,8 @@ async function postFood(body){
 	  })
 
 		let dietDb = await Diet.findAll({
-      where: { name: diet }
-    })
+      		where: { name: diet }
+    	})
     newRecipe.addDiet(dietDb)
     //console.log(newRecipe)
     let jsonDbRecipes = await getFoodById(newRecipe.id) 

@@ -7,7 +7,7 @@ const router = Router();
 router.post('/', async (req,res)=> {
   
   const {name, summary, spoonacularScore, healthScore, instructions, diet, image} = req.body
-  //console.log(req.body)
+  console.log(req.body)
   if(!name || !summary){
     return res.status(402).send('Completar los campos obligatorios')
   }
