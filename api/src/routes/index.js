@@ -13,4 +13,4 @@ router.use('/recipes', recipesRouter);
 router.use('/recipe', recipeRouter);
 router.use('/types', typesRouter);
 
-module.exports = router;
+module.exports = router; 

@@ -43,6 +43,7 @@ export function getNameFood(name){
 	return function(dispatch){
 		return axios.get(`http://localhost:3001/recipes?name=${name}`)
 		.then(( json ) => dispatch({type: GET_NAME_RECIPES, payload: json.data}))
+		.catch(error=> window.alert(error.response.data))
 	}
 }
 
@@ -58,7 +59,7 @@ export function postFood(payload){
 		return axios.post(`http://localhost:3001/recipe`, payload)
 		// .then(( json ) => dispatch({type: POST_FOOD, payload: json.data}))
 		// .catch(error=> window.alert(error.response.data.message))
-		.then(()=> window.alert('Receta creada orgullosamente'))
+		.then(()=> window.alert('Receta creada exitosamente'))
 		.catch((error)=> window.alert(error.response.data))
 		//.catch(( error ) => dispatch({type: HANDLE_ERROR, payload: error.response.data}))
 		

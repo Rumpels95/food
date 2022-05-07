@@ -11,7 +11,7 @@ export default function Cards({foods}){
             return(
                 <>
                     <Link key={e.id} className={style.link} to={`/recipes/${e.id}`} >
-                        <Card name={e.name} image={e.image} diets={e.diets?e.diets:e.dietas.map(e=>e.name)} id={e.id}/>
+                        <Card name={e.name} image={e.image} score={e.spoonacularScore} diets={e.diets?e.diets:e.dietas.map(e=>e.name)} id={e.id}/>
                     </Link>
                 </>	
             )
