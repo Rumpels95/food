@@ -123,6 +123,11 @@ async function getRecipes(name){
 		let allRecipes =[]
 		allRecipes = [...jsonFood, ...jsonDbRecipes]
 
+		//ORDENAMIENTO FINAL:
+		allRecipes = allRecipes.sort(function(a, b) {
+			return a.spoonacularScore - b.spoonacularScore
+		})
+
 		//console.log(dbRecipes)
 
 		

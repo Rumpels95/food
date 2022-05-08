@@ -19,9 +19,9 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-const { callDiets } = require('./src/controllers/callapi.js') 
+const { callDiets } = require('./src/controllers/callapi.js')    
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {  
+conn.sync({ force: false }).then(() => {  
   server.listen(3001, () => {
     //agregar otra funcion
     callDiets();

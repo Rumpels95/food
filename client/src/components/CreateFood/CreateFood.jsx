@@ -28,9 +28,9 @@ function isValid(input){
 	if(input.healthScore && !regexExp1.test(input.healthScore)) errors.healthScore = 'Alguno de los caracteres son inválidos'
 		else if(input.healthScore<0) errors.healthScore = 'Score debe ser mayor a 0'
 		else if(input.healthScore>100) errors.healthScore = 'Valor máximo es 100'
-	//if(!input.healthScore) errors.healthScore = 'Se requiere un healthScore'
-	//if(!input.instructions) errors.instructions = 'Se requieren instrucciones'
+	
 	if(!input.diet.length) errors.diet = 'Al menos una dieta debe seleccionarse'
+		else if(input.diet.length>3) errors.diet = 'Solo se pueden ingresar 3 dietas como máximo'
 
 	return errors;
 }
@@ -77,7 +77,7 @@ export default function CreateFood(){
 	function handleCheck(e){
 		let isChecked = e.target.checked
 		if(isChecked){
-			if(!input.diet.includes(e.target.value)){
+			if(!input.diet.includes(e.target.value) && input.diet.length<4){
 				stateInput({
 					...input,
 					diet: [...input.diet, e.target.value]
@@ -100,10 +100,7 @@ export default function CreateFood(){
 		}
 	}
 
-	// async function hello(a) {
-	// 	let greeting
-	// 	return greeting = await Promise.resolve(a);
-	//   };
+	
 
 	function  handleSubmit(e){
 
@@ -150,20 +147,18 @@ export default function CreateFood(){
 		setSlide(e.target.value);
 	};
 
-	// if(!messageBack){
-	// 	console.log(messageBack)
-	// 	alert("Completar los campos requeridos")
-	// 	return 
-	// }
+	
 	return(
 		<>
 			<NavBar/>
 			
 			<h1>Crea tu Receta</h1>
-			<form onSubmit={e=>handleSubmit(e)}>
+			<form onSubmit={e=>handleSubmit(e)} className={style.form}>
 				<div className={style.div0}>
 					<div className={style.div1}>
-						<label>Nombre:</label>
+						<div className={style.div10}>
+							<label className={style.p}>Nombre:</label>
+						</div>
 						<input className={style.inputt0} type="text" value={input.name} name="name" onChange={handleChange} oninput="validate(this)"/>
 						{errors.name && (
 							<span className={style.error}>{errors.name}</span>
@@ -172,6 +167,7 @@ export default function CreateFood(){
 					<div className={style.div1}>
 						<label>Resumen:</label>
 						<input className={style.inputt1} type="text" value={input.summary} name="summary" onChange={handleChange}/>
+						{/* <textarea name="textarea" rows="10" cols="50"></textarea> */}
 						{errors.summary && (
 							<span className={style.error}>{errors.summary}</span>
 						)}
@@ -183,12 +179,7 @@ export default function CreateFood(){
 							<span className={style.error}>{errors.spoonacularScore}</span>
 						)}
 					</div>
-					{/* <div>
-						<label for="score">SpoonacularScore: </label>
-						<input className="style.range" type="range" step="1" min="0" max="100" name="spoonacularScore" 
-						defaultValue={slide} onMouseUp={handleChangeRange} onChange={e=>handleChange(e)}></input>
-						<label>{rangeval}</label>
-					</div> */}
+					
 					<div className={style.div1}>
 						<label>Health Score:</label>
 						<input className={style.inputt3} type="text" value={input.healthScore} name="healthScore" onChange={handleChange}/>
@@ -196,12 +187,6 @@ export default function CreateFood(){
 							<span className={style.error}>{errors.healthScore}</span>
 						)}
 					</div>
-				</div>
-				<div className={style.div2}>
-					<label>Instrucciones:</label>
-					<input className={style.inputt4} type="text" value={input.instructions} name="instructions" onChange={handleChange}/>
-				</div>
-				<div className={style.div3}>
 					<div className={style.div4}>
 						<label>Imagen:</label>
 						<input className={style.inputt5} type="text" value={input.image} name="image" onChange={handleChange}/>
@@ -209,19 +194,28 @@ export default function CreateFood(){
 							<span className={style.error}>{errors.image}</span>
 						)}
 					</div>
+				</div>
+				
+				<div className={style.div3}>
+					<div className={style.div2}>
+						<label>Instrucciones:</label>
+						<input className={style.inputt4} type="text" value={input.instructions} name="instructions" onChange={handleChange}/>
+					</div>
 					<div className={style.div5}>
 					{
 						diets?.map((dieta)=>
 							(
-								<label key={dieta.name}>{dieta.name.charAt(0).toUpperCase()+dieta.name.slice(1)}:
-								<input className={style.inputc} type="checkbox" value={dieta.name} name={dieta.name} onChange={(e)=>handleCheck(e)}/></label>
+								<label className={style.diets} key={dieta.name}>{dieta.name.charAt(0).toUpperCase()+dieta.name.slice(1)}:&nbsp; &nbsp;
+								<input className={style.inputc} type="checkbox" value={dieta.name} name={dieta.name} onChange={(e)=>handleCheck(e)}/>
+								<span>   </span><br/>
+								</label>
 							))
 					}{errors.diet && (
 						<span className={style.error}>{errors.diet}</span>
 					)}
+						<ul className={style.ul}><li className={style.li}>{input.diet.map(e=>e+" - ")}</li></ul>
+						<button className={style.button} type='submit'>Crear Receta</button>
 					</div>
-					<ul className={style.ul}><li className={style.li}>{input.diet.map(e=>e+",")}</li></ul>
-					<button className={style.button} type='submit'>Crear Receta</button>
 				</div>
 			</form>
 		</>

@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux'
-import { filterFoodByDiets, getDiets, getRecipes, orderedByName, orderedByRating } from '../../redux/actions/index'
+import { useHistory} from 'react-router-dom';
+import { filterFoodByDiets, getDiets, getRecipes, orderedByAll, orderedByName, orderedByRating } from '../../redux/actions/index'
 import Cards from '../Cards/Cards';
 import NavBar from '../NavBar/NavBar';
 import Paginado from '../Paginado/Paginado';
@@ -10,10 +11,12 @@ import style from "./Home.module.css";
 
 export default function Home (){
 	const dispatch = useDispatch()
+	const history = useHistory()
 	const allRecipes = useSelector((state) => state.foods)
 	const diets = useSelector((state) => state.diets)
 	// order
 	const [, setOrder] = useState('')
+	const [actualSelect, setActualSelect] = useState('ascS');
 	// Paginacion
 
 	const [actualPage, setActualPage] = useState(1)
@@ -48,14 +51,18 @@ export default function Home (){
 
 	function handleFilterDiet(e){
 		e.preventDefault();
+		dispatch(getDiets())
 		dispatch(filterFoodByDiets(e.target.value))
+		setActualSelect('None')
 		setActualPage(1);
-		setOrder(`Ordenado ${e.target.value}`)//renderiza
+		setOrder(`Ordenado ${e.target.value}`)//renderiza4
+		//history.push('/home')
 	}
 
 	function handleSortName(e){
 		e.preventDefault();
 		dispatch(orderedByName(e.target.value))
+		//setActualSelect(e.target.value)
 		setActualPage(1);
 		setOrder(`Ordenado ${e.target.value}`)//renderiza
 	}
@@ -65,6 +72,15 @@ export default function Home (){
 		setActualPage(1);
 		setOrder(`Ordenado de manera ${e.target.value}`)
 	}
+
+	function handleorderedByAll(e){
+		e.preventDefault();
+		dispatch(orderedByAll(e.target.value))
+		setActualSelect(e.target.value)
+		setActualPage(1);
+		setOrder(`Ordenado ${e.target.value}`)//renderiza
+	}
+
 	return (
 		<div>
 			<NavBar/>
@@ -80,18 +96,26 @@ export default function Home (){
 				<div className={style.div2}>
 					<div className={style.div3}>
 						<label className={style.label}>Ordenar por Nombre</label>
-						<select onChange={e=> handleSortName(e)}>
-							<option value='All'>Ninguno</option>
-							<option value='asc'>Ascendente</option>
-							<option value='desc'>Descendente</option>
+						<select onChange={e=> handleSortName(e)} >
+						{/* value={actualSelect} */}
+							{/* <option value='All'>Ninguno</option> */}
+							{/* <option value='asc'>Ascendente</option>
+							<option value='desc'>Descendente</option> */}
+
+
 						</select>
 					</div>
 					<div className={style.div3}>
-						<label className={style.label}>Ordenar por Puntuación</label>
-						<select onChange={e=> handleSortPunct(e)}>
-							<option value='All'>Ninguno</option>
+						<label className={style.label}>Ordenar por:</label>
+						<select onChange={e=> handleorderedByAll(e)} value={actualSelect}>
+							<option value='descS'>Desc Puntuación</option>
+							<option value='ascS'>Asc Puntuación</option>
+							<option value='descN'>Desc Nombre</option>
+							<option value='ascN'>Asc Nombre</option>
+							<option value='None'>Ninguno</option>
+							{/* <option value='All'>Ninguno</option>
 							<option value='asc'>Ascendente</option>
-							<option value='desc'>Descendente</option>
+							<option value='desc'>Descendente</option> */}
 						</select>
 					</div>
 					<div className={style.div4}>
