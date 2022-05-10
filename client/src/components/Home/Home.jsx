@@ -45,10 +45,6 @@ export default function Home (){
 		// eslint-disable-next-line
 	}, [])
 
-	// function handleClick(e){
-	// 	e.preventDefault();
-	// 	dispatch(getRecipes());	 
-	// }
 
 	function handleFilterDiet(e){
 		e.preventDefault();
@@ -56,23 +52,10 @@ export default function Home (){
 		dispatch(filterFoodByDiets(e.target.value))
 		setActualSelect('None')
 		setActualPage(1);
-		setOrder(`Ordenado ${e.target.value}`)//renderiza4
+		setOrder(`Ordenado ${e.target.value}`)
 		//history.push('/home')
 	}
 
-	function handleSortName(e){
-		e.preventDefault();
-		dispatch(orderedByName(e.target.value))
-		//setActualSelect(e.target.value)
-		setActualPage(1);
-		setOrder(`Ordenado ${e.target.value}`)//renderiza
-	}
-	function handleSortPunct(e){
-		e.preventDefault();
-		dispatch(orderedByRating(e.target.value))
-		setActualPage(1);
-		setOrder(`Ordenado de manera ${e.target.value}`)
-	}
 
 	function handleorderedByAll(e){
 		e.preventDefault();
@@ -86,22 +69,11 @@ export default function Home (){
 		<div>
 			<NavBar/>
 			
-			
-			{/* <button onClick={e=> {handleClick(e)}}>
-				Mostrar recetas
-			</button> */}
 			<div className={style.div0}>
 				<div className={style.div1}>
 					<h1>TODAS LAS RECETAS</h1>
 				</div>
 				<div className={style.div2}>
-					{/* <div className={style.div3}>
-						<label className={style.label}>Ordenar por Nombre</label>
-						<select onChange={e=> handleSortName(e)} >
-
-
-						</select>
-					</div> */}
 					<div className={style.div3}>
 						<label className={style.label}>Ordenar por:</label>
 						<select onChange={e=> handleorderedByAll(e)} value={actualSelect}>
@@ -110,9 +82,6 @@ export default function Home (){
 							<option value='descN'>Desc Nombre</option>
 							<option value='ascN'>Asc Nombre</option>
 							<option value='None'>Ninguno</option>
-							{/* <option value='All'>Ninguno</option>
-							<option value='asc'>Ascendente</option>
-							<option value='desc'>Descendente</option> */}
 						</select>
 					</div>
 					<div className={style.div4}>
@@ -138,10 +107,6 @@ export default function Home (){
 					<SearchBar/>
 				</div>
 				
-				{/* <select>
-					<option value='spoonScore'>Puntuacion</option>
-					<option value='withoutScore'>Sin Puntuacion</option>
-				</select> */}
 				
 				<Paginado
 					foodsPerPage= {foodsPerPage}

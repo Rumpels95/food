@@ -13,7 +13,6 @@ export default function Paginado({ foodsPerPage, allFoods, paginado, cambiarInde
 				{ pageNumbers?.map(e =>(
 					cambiarIndex(e)? //Darle estilo (classname)
 						(<span className={style.number1} key={e} onClick={()=> paginado(e)}>{e}
-						{/* <a onClick={()=> paginado(e)}>{e}</a> */}
 					</span>)
 					: (<span className={style.number} key={e} onClick={()=> paginado(e)}>{e}
 						</span>) 

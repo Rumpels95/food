@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
 	sequelize.define('diet', { 
 		id:{
 			type: DataTypes.UUID,
-      		defaultValue: UUIDV4,//para evitar conflicto con ids de la api
+      		defaultValue: UUIDV4,
 			primaryKey: true,
 			//allowNull: false,
 		},
