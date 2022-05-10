@@ -2,18 +2,151 @@
     color: #ef4444;
 }
 
-.range{
-    -webkit-appearance: none;
-    width: 100%;
-    height: 15px;
-    border-radius: 5px;  
-    background: #d3d3d3;
-    outline: none;
-    opacity: 0.7;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
-}
-
 .range:hover {
     opacity: 1; /* Fully shown on mouse-over */
   }
+
+.label{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.div0{
+    display: flex;
+    flex-direction: column;
+    /* align-content: center; */
+    justify-content: flex-start;
+    /* align-items: center;     */
+    /* margin-left: -5rem; */
+}
+
+.div3{
+    display: flex;
+    flex-direction: column;
+    /* align-content: center; */
+    justify-content:space-between;
+    align-items: center;    
+}
+
+.form{
+    background: url("../../images/tablon.jpg");
+    background-size: 100vw 70vh;
+    border: 0.5rem solid black;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 2rem;
+    margin-right: 2rem;
+    margin-left: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    overflow: auto;
+    flex-wrap: wrap;
+    
+}
+
+.inputt0{
+    /* display: flex; */
+    width : 20rem;
+    justify-content: flex-start;
+}
+
+.inputt1{
+    width : 20rem;
+    height: 2rem;
+}
+
+.div1{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 1.5rem;
+    margin-right: 1.5rem;
+    margin-left: 0rem;
+    margin-bottom: 1.5rem;
+}
+
+.div2{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.div4{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.p{
+    display: block;
+    align-content:flex-start;
+     justify-content:left;
+    align-items:initial;    
+    text-align: left;
+    margin:0;
+    padding:0;
+}
+
+.div10{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.li{
+    color: orange;
+    display:inline;
+     padding-left:3px;
+     padding-right:3px;
+    font-size: 14px;
+    line-height: 20px;
+    text-transform: uppercase;
+    box-shadow: none;
+    text-decoration: none;
+    text-align: -webkit-match-parent;
+    white-space: nowrap;
+    font-weight: 400;
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
+.ul{
+    margin-left: 16px;
+    line-height: 1;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    font-weight: 400;
+    font-size: 16px;
+    color: #333;
+    text-shadow: 1px 0 0 #333, -1px 0 0 #333,
+   0 1px 0 #333, 0 -1px 0 #333, 1px 1px 0 #333, -1px -1px 0 #333,
+   -1px 1px 0 #333, 1px -1px 0 #333;
+}
+
+
+.diets{
+    margin-left: 16px;
+}
+
+.button{
+    margin-bottom: 2rem;
+}

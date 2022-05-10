@@ -79,7 +79,7 @@ async function getRecipes(name){
 	const number = 100;
 	const url=`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=${number}`;
 	const response = await axios.get(url);
-	let jsonFood = response.data.results;
+	let jsonFood = response.data.results; 
 	if(jsonFood.length === 0){
 		throw new Error('No se encontraron recetas')
 	}else{
@@ -116,12 +116,17 @@ async function getRecipes(name){
 				healthScore: e.healthScore,
 				instructions: e.instructions,
 				image: e.image,
-				dietas: e.diets
+				dietas: e.diets,
 			}
 			//e.toJSON()
 		})
 		let allRecipes =[]
 		allRecipes = [...jsonFood, ...jsonDbRecipes]
+		
+		//ORDENAMIENTO FINAL:
+		allRecipes = allRecipes.sort(function(a, b) { 
+			return a.spoonacularScore - b.spoonacularScore
+		})
 
 		//console.log(dbRecipes)
 
@@ -167,7 +172,7 @@ async function postFood(body){
 		spoonacularScore: spoonacularScore?spoonacularScore:0,
 		healthScore: healthScore?healthScore:0.0,
 		instructions,
-		image
+		image,
 	  })
 
 		let dietDb = await Diet.findAll({

@@ -9,6 +9,7 @@ export const POST_FOOD = 'POST_FOOD'
 export const GET_DETAILS = 'GET_DETAILS'
 export const CLEAR_PAGE = 'CLEAR_PAGE'
 export const HANDLE_ERROR = 'HANDLE_ERROR'
+export const ORDER_BY_GENERAL = 'ORDER_BY_GENERAL'
 
 
 export function getRecipes(){
@@ -35,6 +36,13 @@ export function orderedByName(payload){
 export function orderedByRating(payload){
 	return {
 		type: ORDER_BY_RATING,
+		payload
+	}
+}
+
+export function orderedByAll(payload){
+	return {
+		type: ORDER_BY_GENERAL,
 		payload
 	}
 }
