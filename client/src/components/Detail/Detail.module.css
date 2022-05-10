@@ -23,6 +23,7 @@
     margin-right: 2rem;
     margin-left: 2rem;
     justify-content: center;
+    overflow: auto;
     /* width: 100vh; */
 }
 
@@ -30,6 +31,8 @@
     align-content: center;
     align-items: center;
     justify-content: center;
+    
+    
 }
 
 .p{

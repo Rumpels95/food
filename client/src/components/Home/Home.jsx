@@ -17,6 +17,7 @@ export default function Home (){
 	// order
 	const [, setOrder] = useState('')
 	const [actualSelect, setActualSelect] = useState('ascS');
+	
 	// Paginacion
 
 	const [actualPage, setActualPage] = useState(1)
@@ -26,7 +27,7 @@ export default function Home (){
 	const indexOfFirstFood = indexOfLastFood - foodsPerPage
 	const actualFoods = allRecipes.slice(indexOfFirstFood, indexOfLastFood)
 
-	 const cambiarIndex = (index) => {
+	const cambiarIndex = (index) => { //dar estilo css
 		if(index===actualPage) return true
 		else return false
 	}
@@ -94,17 +95,13 @@ export default function Home (){
 					<h1>TODAS LAS RECETAS</h1>
 				</div>
 				<div className={style.div2}>
-					<div className={style.div3}>
+					{/* <div className={style.div3}>
 						<label className={style.label}>Ordenar por Nombre</label>
 						<select onChange={e=> handleSortName(e)} >
-						{/* value={actualSelect} */}
-							{/* <option value='All'>Ninguno</option> */}
-							{/* <option value='asc'>Ascendente</option>
-							<option value='desc'>Descendente</option> */}
 
 
 						</select>
-					</div>
+					</div> */}
 					<div className={style.div3}>
 						<label className={style.label}>Ordenar por:</label>
 						<select onChange={e=> handleorderedByAll(e)} value={actualSelect}>

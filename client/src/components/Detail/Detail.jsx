@@ -34,7 +34,6 @@ export default function Detail(props){
 						</div>
 					</div>	
 					<p className={style.p}><b>Resumen: {myFood.summary}</b></p>
-					{/* <p>Instrucciones: {myFood.instructions}</p> */}
 					{myFood.instructions.length>0&&(<p className={style.p}><b>Instrucciones: {myFood.instructions}</b></p>)}
 				</div>
 				: (

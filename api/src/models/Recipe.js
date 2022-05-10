@@ -80,6 +80,11 @@ module.exports = (sequelize) => {
         // },
       }
     },
+    // createdDB:{
+    //   type: DataTypes.BOOLEAN,
+    //   allowNull: false,
+    //   defaultValue: true,
+    // }
   },
   {
     timestamps: false,

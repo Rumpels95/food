@@ -6,25 +6,32 @@
     opacity: 1; /* Fully shown on mouse-over */
   }
 
+.label{
+    display: flex;
+    justify-content: flex-start;
+}
+
 .div0{
     display: flex;
     flex-direction: column;
-    align-content: center;
-    justify-content: center;
-    align-items: center;    
+    /* align-content: center; */
+    justify-content: flex-start;
+    /* align-items: center;     */
+    /* margin-left: -5rem; */
 }
 
 .div3{
     display: flex;
     flex-direction: column;
-    align-content: center;
+    /* align-content: center; */
     justify-content:space-between;
     align-items: center;    
 }
 
 .form{
     background: url("../../images/tablon.jpg");
-    background-size: 90vw 70vh;
+    background-size: 100vw 70vh;
+    border: 0.5rem solid black;
     background-repeat: no-repeat;
     background-size: cover;
     margin-top: 2rem;
@@ -32,27 +39,29 @@
     margin-left: 2rem;
     display: flex;
     flex-direction: row;
-    align-content: center;
-    justify-content:space-around;
+    justify-content: space-around;
     align-items: center;
+    overflow: auto;
+    flex-wrap: wrap;
+    
 }
 
 .inputt0{
+    /* display: flex; */
     width : 20rem;
-    margin-left: 5rem;
+    justify-content: flex-start;
 }
 
 .inputt1{
     width : 20rem;
     height: 2rem;
-    margin-left: 5rem;
 }
 
 .div1{
     display: flex;
     flex-direction: column;
     align-content: center;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     margin-top: 1.5rem;
     margin-right: 1.5rem;
@@ -84,18 +93,15 @@
     display: block;
     align-content:flex-start;
      justify-content:left;
-    align-items:initial; 
-    
+    align-items:initial;    
     text-align: left;
     margin:0;
-  padding:0;
-
+    padding:0;
 }
 
 .div10{
     display: flex;
     flex-direction: row;
-    align-content: center;
     justify-content: center;
     align-items: center;
 }
@@ -139,4 +145,8 @@
 
 .diets{
     margin-left: 16px;
+}
+
+.button{
+    margin-bottom: 2rem;
 }
