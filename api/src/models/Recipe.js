@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
   sequelize.define('recipe', {
     id:{
       type: DataTypes.UUID,
-      defaultValue: UUIDV4,//para evitar conflicto con ids de la api
+      defaultValue: UUIDV4,
       primaryKey: true,
       //allowNull: false,
     },
@@ -65,26 +65,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       defaultValue: "No image",
       //allowNull: true,
-      validate: {
-        // len: {
-        //   args: [5, 500],   
-        //   msg: "Ingresar más de 5 caracteres"
-        // },
-        // contains: {
-        //   args: ['.png'],    
-        //   msg: "Debe ser únicamente de extensión .jpg o .png"
-        // },
-        // contains: {
-        //   args: ['.jpg'],   
-        //   msg: "Debe ser únicamente de extensión .jpg o .png"
-        // },
-      }
     },
-    // createdDB:{
-    //   type: DataTypes.BOOLEAN,
-    //   allowNull: false,
-    //   defaultValue: true,
-    // }
   },
   {
     timestamps: false,

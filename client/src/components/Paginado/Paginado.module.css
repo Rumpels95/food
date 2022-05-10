@@ -1,16 +1,4 @@
 .paginado{
-    /* display: flex;
-    padding-left: 0;
-    list-style: none;
-    border-radius: 0.25rem;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    justify-content: center;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px; */
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -21,9 +9,6 @@
 }
 
 .number{
-    /* border: 0.1rem solid #000;
-    border-radius: 0.25rem;
-    color: #fff;*/
     background-color: black; 
     height: 2rem;
     width: 2rem;

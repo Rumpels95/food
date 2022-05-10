@@ -48,7 +48,6 @@ export default function reducer( state = initialState, action) {
 					}
 				case 'ascN':
 					let typeOrder3 = state.foods.sort(function(a, b) {
-						//return a.name - b.name
 						if(a.name.toLowerCase().replace(/\s+/g, ' ').trim() > b.name.toLowerCase().replace(/\s+/g, ' ').trim()) return 1
 						if(b.name.toLowerCase().replace(/\s+/g, ' ').trim() > a.name.toLowerCase().replace(/\s+/g, ' ').trim()) return -1
 						return 0
@@ -60,7 +59,6 @@ export default function reducer( state = initialState, action) {
 
 				case 'descN':
 					let typeOrder4 = state.foods.sort(function(a, b) {
-						//return b.name - a.name
 						if(b.name.toLowerCase().replace(/\s+/g, ' ').trim() > a.name.toLowerCase().replace(/\s+/g, ' ').trim()) return 1
 						if(a.name.toLowerCase().replace(/\s+/g, ' ').trim() > b.name.toLowerCase().replace(/\s+/g, ' ').trim()) return -1
 						return 0
@@ -79,17 +77,14 @@ export default function reducer( state = initialState, action) {
 			}
 
 		case ORDER_BY_NAME:
-			const allFoods1 = state.initialFoods//[...state.initialFoods]
-			let typeOrder = //( action.payload === 'All' ) ? allFoods1 :
+			let typeOrder = 
 				action.payload === 'asc' ?
 				state.foods.sort(function(a, b) {
-					//return a.name - b.name
 					if(a.name.toLowerCase().replace(/\s+/g, ' ').trim() > b.name.toLowerCase().replace(/\s+/g, ' ').trim()) return 1
 					if(b.name.toLowerCase().replace(/\s+/g, ' ').trim() > a.name.toLowerCase().replace(/\s+/g, ' ').trim()) return -1
 					return 0
 				})
 				: state.foods.sort(function(a, b) {
-					//return b.name - a.name
 					if(b.name.toLowerCase().replace(/\s+/g, ' ').trim() > a.name.toLowerCase().replace(/\s+/g, ' ').trim()) return 1
 					if(a.name.toLowerCase().replace(/\s+/g, ' ').trim() > b.name.toLowerCase().replace(/\s+/g, ' ').trim()) return -1
 					return 0
@@ -106,7 +101,6 @@ export default function reducer( state = initialState, action) {
 					return a.spoonacularScore - b.spoonacularScore
 				})
 				: state.foods.sort(function(a, b) {
-					//return b.name - a.name
 					return b.spoonacularScore - a.spoonacularScore
 				})
 			return {

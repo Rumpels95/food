@@ -33,8 +33,6 @@ async function getFoodById(idReceta){
 	} 
 	if (typeof idReceta === "string"){ //BASE DE DATOS
 		const regexExp = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
-		//console.log("ESTOY AQUI")
-		//console.log(idReceta)
 		if(!regexExp.test(idReceta)) throw new Error("Invalid id letra");
 		const recipeFinded = await Recipe.findByPk(idReceta,{
 			include:{
