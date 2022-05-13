@@ -82,6 +82,7 @@ async function getRecipes(name){
 		throw new Error('No se encontraron recetas')
 	}else{
 		const regexExp = /([^ \r\n][^!?\.\r\n]+[\w!?\.]+)/gi
+		
 		let valuableInfo = jsonFood.map(e=>{
 			return{
 				id: e.id,
