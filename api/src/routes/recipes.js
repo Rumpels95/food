@@ -1,7 +1,8 @@
 require('dotenv').config();
 const axios = require('axios').default;
 const { Router } = require('express');
-const { getFoodById, getRecipes } = require('../controllers/index')
+const { getFoodById, getRecipes } = require('../controllers/index');
+const { Diet, Recipe } = require('../db');
 const router = Router();
 const {
   API_KEY,
@@ -30,7 +31,17 @@ router.get('/:idReceta',  async(req, res) => {
    }
 })
 
-
+router.delete('/', async(req, res) => {
+	let {id}=req.body
+	try{
+		await Recipe.destroy({
+			where: {id}
+		})
+		res.status(204).json('Eliminado correctamente')
+	} catch (error){
+		res.status(404).json('Hubo problemas')
+	}
+})
 
 
  module.exports = router;

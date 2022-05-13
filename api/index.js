@@ -21,8 +21,10 @@ const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 const { callDiets } = require('./src/controllers/callapi.js')    
 // Syncing all the models at once.
+const PORT = process.env.PORT || 3001;
+
 conn.sync({ force: false }).then(() => {  
-  server.listen(3001, () => {
+  server.listen(PORT, () => {
     //agregar otra funcion
     callDiets();
 

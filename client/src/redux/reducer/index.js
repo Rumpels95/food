@@ -32,7 +32,7 @@ export default function reducer( state = initialState, action) {
 			switch(action.payload){
 				case 'ascS':
 					let typeOrder1 = state.foods.sort(function(a, b) {
-						return a.spoonacularScore - b.spoonacularScore
+						return a.healthScore - b.healthScore
 					})
 					return {
 						...state,
@@ -40,7 +40,7 @@ export default function reducer( state = initialState, action) {
 					}
 				case 'descS':
 					let typeOrder2 = state.foods.sort(function(a, b) {
-						return b.spoonacularScore - a.spoonacularScore
+						return b.healthScore - a.healthScore
 					})
 					return {
 						...state,
@@ -98,10 +98,10 @@ export default function reducer( state = initialState, action) {
 			const ratingOrder = 
 				action.payload === 'asc' ?
 				state.foods.sort(function(a, b) {
-					return a.spoonacularScore - b.spoonacularScore
+					return a.healthScore - b.healthScore
 				})
 				: state.foods.sort(function(a, b) {
-					return b.spoonacularScore - a.spoonacularScore
+					return b.healthScore - a.healthScore
 				})
 			return {
 				...state,
