@@ -10,6 +10,7 @@ const {
 
 //getAll // ?query
 router.get('/', async (req, res) => {
+	
 	try{
 		res.header("Access-Control-Allow-Origin", "*");
 		const {name} = req.query;
