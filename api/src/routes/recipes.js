@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 		const {name} = req.query;
 		res.status(201).json(await getRecipes(name))
 	} catch (error){
-		res.status(404).json( error.message)
+		res.status(404).json( error)
 	}
 })
 
