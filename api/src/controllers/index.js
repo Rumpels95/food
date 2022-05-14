@@ -73,13 +73,11 @@ async function getFoodById(idReceta){
 
 //LLAMA A LA API Y A LA DB
 async function getRecipes(name){ 
-	console.log(API_KEY)
-	return API_KEY
+	console.log('hola')
 	let cache={};
 	const number = 100;
-	const url=`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=${number}`;
+	const url=`https://api.spoonacular.com/recipes/complexSearch?apiKey=fc7c32003b674c1fa710550ec76f02ce&addRecipeInformation=true&number=${number}`;
 	const response = await axios.get(url);
-	console.log()
 	let jsonFood = response.data.results; 
 	if(jsonFood.length === 0){
 		throw new Error('No se encontraron recetas')
