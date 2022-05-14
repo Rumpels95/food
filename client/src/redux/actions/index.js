@@ -14,7 +14,8 @@ export const ORDER_BY_GENERAL = 'ORDER_BY_GENERAL'
 
 export function getRecipes(){
 	return function(dispatch){
-		return axios.get('http://localhost:3001/recipes')
+		//return axios.get('http://localhost:3001/recipes')
+		return axios.get('https://foodxrecipes.herokuapp.com/recipes')
 		.then(( json ) => dispatch({type: GET_RECIPES, payload: json.data}))
 	}
 }
