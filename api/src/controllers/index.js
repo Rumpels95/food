@@ -2,6 +2,7 @@
 require('dotenv').config();
 const { Diet, Recipe } = require('../db');
 const axios = require('axios').default; 
+const foodJSON = require('../food.json')
 
 const {
   API_KEY,
@@ -73,12 +74,16 @@ async function getFoodById(idReceta){
 
 //LLAMA A LA API Y A LA DB
 async function getRecipes(name){ 
+//function getRecipes(name){ 	
 	console.log('hola')
 	let cache={};
 	const number = 100;
-	const url=`https://api.spoonacular.com/recipes/complexSearch?apiKey=fc7c32003b674c1fa710550ec76f02ce&addRecipeInformation=true&number=${number}`;
-	const response = await axios.get(url);
-	let jsonFood = response.data.results; 
+	//const url=`https://api.spoonacular.com/recipes/complexSearch?apiKey=fc7c32003b674c1fa710550ec76f02ce&addRecipeInformation=true&number=${number}`;
+	//const response = await axios.get('../food.json');
+	let response = foodJSON
+	
+	let jsonFood = response.results; 
+	//console.log(jsonFood)
 	if(jsonFood.length === 0){
 		throw new Error('No se encontraron recetas')
 	}else{
