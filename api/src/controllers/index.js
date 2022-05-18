@@ -130,7 +130,7 @@ async function getRecipes(name){
 		
 		//ORDENAMIENTO FINAL:
 		allRecipes = allRecipes.sort(function(a, b) { 
-			return a.spoonacularScore - b.spoonacularScore
+			return a.healthScore - b.healthScore
 		})
 
 		//console.log(dbRecipes)
