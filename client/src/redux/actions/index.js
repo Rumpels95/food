@@ -50,7 +50,8 @@ export function orderedByAll(payload){
 
 export function getNameFood(name){
 	return function(dispatch){
-		return axios.get(`http://localhost:3001/recipes?name=${name}`)
+		//return axios.get(`http://localhost:3001/recipes?name=${name}`)
+		return axios.get(`https://foodxdiets.herokuapp.com/recipes?name=${name}`)
 		.then(( json ) => dispatch({type: GET_NAME_RECIPES, payload: json.data}))
 		.catch(error=> window.alert(error.response.data))
 	}
@@ -58,7 +59,8 @@ export function getNameFood(name){
 
 export function getDiets(){
 	return function(dispatch){
-		return axios.get(`http://localhost:3001/types`)
+		//return axios.get(`http://localhost:3001/types`)
+		return axios.get(`https://foodxdiets.herokuapp.com/types`)
 		.then(( json ) => dispatch({type: GET_DIETS, payload: json.data}))
 	}
 }
