@@ -28,7 +28,8 @@ router.get('/:idReceta',  async(req, res) => {
 		const {idReceta} = req.params;
 		res.status(201).json(await getFoodById(idReceta))
 	} catch (error){
-		res.status(404).json({error: error.message})
+		//res.status(404).json({error: error.message})
+		res.status(404).json({error: 'por que no me haces caso?'})
    }
 })
 
