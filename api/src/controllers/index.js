@@ -10,15 +10,22 @@ const {
 
 async function getFoodById(idReceta){
 	if (!isNaN(idReceta)){   //LLAMADA A LA API
-		const url=`https://api.spoonacular.com/recipes/${idReceta}/information?apiKey=${API_KEY}`;
-		const response = await axios.get(url);
-		let jsonFood = response.data.results;
+		//const url=`https://api.spoonacular.com/recipes/${idReceta}/information?apiKey=${API_KEY}`;
+		//const response = await axios.get(url);
+		///////////////////////
+		//Implementando la busqueda por id
+		///////////////////////
+		let jsonclone = [...foodJSON.results]  
+		console.log(idReceta)
+		//console.log(jsonFood)
+		let jsonFiltered = jsonclone.filter(e=>e.id==idReceta)
+		console.log(jsonFiltered)
 		//console.log(response.data)
 		// if(jsonFood.length === 0){
 		// 	throw new Error('No se encontraron recetas')
 		// }
 		const { id, title, summary, image, diets, dishTypes,
-			aggregateLikes, spoonacularScore, healthScore, analyzedInstructions} = response.data
+			aggregateLikes, spoonacularScore, healthScore, analyzedInstructions} = jsonFiltered[0]
 		
 			return {
 				id,
@@ -147,6 +154,7 @@ async function getRecipes(name){
 			 console.log(jsonFiltered.length)
 			 return jsonFiltered
 		}
+		console.log(allRecipes.length)
 		return allRecipes;
 	}
 	

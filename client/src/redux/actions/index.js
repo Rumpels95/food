@@ -79,6 +79,7 @@ export function postFood(payload){
 export function getDetail(id){
 	return async function(dispatch){
 		return axios.get(`http://localhost:3001/recipes/${id}`)
+		//return axios.get(`https://foodxrecipes.herokuapp.com/recipes/${id}`)
 		.then(( json ) => dispatch({type: GET_DETAILS, payload: json.data}))
 	}
 }
