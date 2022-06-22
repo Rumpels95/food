@@ -8,7 +8,7 @@ const store = createStore(
 	reducer,
   compose(
 		applyMiddleware(thunk),
-		devTools
+
 	)  
 );
 
