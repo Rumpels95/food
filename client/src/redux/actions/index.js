@@ -15,7 +15,8 @@ export const ORDER_BY_GENERAL = 'ORDER_BY_GENERAL'
 export function getRecipes(){
 	return function(dispatch){
 		//return axios.get('http://localhost:3001/recipes')
-		return axios.get('https://foodxdiets.herokuapp.com/recipes')
+		//return axios.get('https://foodxdiets.herokuapp.com/recipes')
+		return axios.get('/recipes')
 		.then(( json ) => dispatch({type: GET_RECIPES, payload: json.data}))
 	}
 }
@@ -51,7 +52,8 @@ export function orderedByAll(payload){
 export function getNameFood(name){
 	return function(dispatch){
 		//return axios.get(`http://localhost:3001/recipes?name=${name}`)
-		return axios.get(`https://foodxdiets.herokuapp.com/recipes?name=${name}`)
+		//return axios.get(`https://foodxdiets.herokuapp.com/recipes?name=${name}`)
+		return axios.get(`/recipes?name=${name}`)
 		.then(( json ) => dispatch({type: GET_NAME_RECIPES, payload: json.data}))
 		.catch(error=> window.alert(error.response.data))
 	}
@@ -60,7 +62,8 @@ export function getNameFood(name){
 export function getDiets(){
 	return function(dispatch){
 		//return axios.get(`http://localhost:3001/types`)
-		return axios.get(`https://foodxdiets.herokuapp.com/types`)
+		//return axios.get(`https://foodxdiets.herokuapp.com/types`)
+		return axios.get(`/types`)
 		.then(( json ) => dispatch({type: GET_DIETS, payload: json.data}))
 	}
 }
@@ -68,7 +71,8 @@ export function getDiets(){
 export function postFood(payload){
 	return function(dispatch){
 		//return axios.post(`http://localhost:3001/recipe`, payload)
-		return axios.post(`https://foodxdiets.herokuapp.com/recipe`, payload)
+		//return axios.post(`https://foodxdiets.herokuapp.com/recipe`, payload)
+		return axios.post(`/recipe`, payload)
 		// .then(( json ) => dispatch({type: POST_FOOD, payload: json.data}))
 		// .catch(error=> window.alert(error.response.data.message))
 		.then(()=> window.alert('Receta creada exitosamente'))
@@ -82,7 +86,8 @@ export function getDetail(id){
 	return async function(dispatch){
 		console.log(id)
 		//return axios.get(`http://localhost:3001/recipes/${id}`)
-		return axios.get(`https://foodxdiets.herokuapp.com/recipes/${id}`)
+		//return axios.get(`https://foodxdiets.herokuapp.com/recipes/${id}`)
+		return axios.get(`/recipes/${id}`)
 		.then(( json ) => dispatch({type: GET_DETAILS, payload: json.data}))
 	}
 }
